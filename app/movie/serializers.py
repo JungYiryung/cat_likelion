@@ -10,7 +10,7 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ['title','director','main_character','duration',
         'rating','description']
-        readonly_fields = ['title']
+        read_only_fields = ['title']
 
 class MovieDetailSerializer(MovieSerializer):
     """Serializer for recipe detail view"""
