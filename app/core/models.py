@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.postgres.fields import ArrayField 
 """
 database models
 """
@@ -54,3 +55,20 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.base_recipe
+
+class Movie(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete = models.CASCADE
+    )
+
+    title = models.CharField(max_length=255)
+    director = models.CharField(max_length=20)
+    main_character = ArrayField(models.CharField(max_length=20)) 
+    duration = models.IntegerField()
+    rating = models.DecimalField(max_digits=3, decimal_places=2)
+    description = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.base_movie
+        # 이부분 잘 모르겟음
